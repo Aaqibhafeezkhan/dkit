@@ -1,0 +1,235 @@
+{
+  "_comment": "Discord gateway intents. Values are derived as (1 << bit).",
+  "source": "https://github.com/discord/discord-api-docs/blob/main/developers/events/gateway.mdx",
+  "source_rendered": "https://discord.com/developers/docs/events/gateway#list-of-intents",
+  "last_verified": "2026-10-20",
+  "notes": [
+    "Bits 17-19 and 22-23 are not assigned in the official table and are absent.",
+    "Privileged intents must be enabled on the Bot page of your application in the Discord Developer Portal before they can be passed in IDENTIFY. Passing a privileged intent that is not enabled closes the gateway with code 4014.",
+    "Apps with more than 10,000 unique users need approval for continued access."
+  ],
+  "privileged_portal_url": "https://discord.com/developers/applications",
+  "intents": [
+    {
+      "name": "GUILDS",
+      "bit": 0,
+      "privileged": false,
+      "events": [
+        "GUILD_CREATE",
+        "GUILD_UPDATE",
+        "GUILD_DELETE",
+        "GUILD_ROLE_CREATE",
+        "GUILD_ROLE_UPDATE",
+        "GUILD_ROLE_DELETE",
+        "CHANNEL_CREATE",
+        "CHANNEL_UPDATE",
+        "CHANNEL_DELETE",
+        "CHANNEL_PINS_UPDATE",
+        "THREAD_CREATE",
+        "THREAD_UPDATE",
+        "THREAD_DELETE",
+        "THREAD_LIST_SYNC",
+        "THREAD_MEMBER_UPDATE",
+        "THREAD_MEMBERS_UPDATE",
+        "STAGE_INSTANCE_CREATE",
+        "STAGE_INSTANCE_UPDATE",
+        "STAGE_INSTANCE_DELETE",
+        "VOICE_CHANNEL_STATUS_UPDATE",
+        "VOICE_CHANNEL_START_TIME_UPDATE"
+      ]
+    },
+    {
+      "name": "GUILD_MEMBERS",
+      "bit": 1,
+      "privileged": true,
+      "events": [
+        "GUILD_MEMBER_ADD",
+        "GUILD_MEMBER_UPDATE",
+        "GUILD_MEMBER_REMOVE",
+        "THREAD_MEMBERS_UPDATE"
+      ]
+    },
+    {
+      "name": "GUILD_MODERATION",
+      "bit": 2,
+      "privileged": false,
+      "events": [
+        "GUILD_AUDIT_LOG_ENTRY_CREATE",
+        "GUILD_BAN_ADD",
+        "GUILD_BAN_REMOVE"
+      ]
+    },
+    {
+      "name": "GUILD_EXPRESSIONS",
+      "bit": 3,
+      "privileged": false,
+      "events": [
+        "GUILD_EMOJIS_UPDATE",
+        "GUILD_STICKERS_UPDATE",
+        "GUILD_SOUNDBOARD_SOUND_CREATE",
+        "GUILD_SOUNDBOARD_SOUND_UPDATE",
+        "GUILD_SOUNDBOARD_SOUND_DELETE",
+        "GUILD_SOUNDBOARD_SOUNDS_UPDATE"
+      ]
+    },
+    {
+      "name": "GUILD_INTEGRATIONS",
+      "bit": 4,
+      "privileged": false,
+      "events": [
+        "GUILD_INTEGRATIONS_UPDATE",
+        "INTEGRATION_CREATE",
+        "INTEGRATION_UPDATE",
+        "INTEGRATION_DELETE"
+      ]
+    },
+    {
+      "name": "GUILD_WEBHOOKS",
+      "bit": 5,
+      "privileged": false,
+      "events": [
+        "WEBHOOKS_UPDATE"
+      ]
+    },
+    {
+      "name": "GUILD_INVITES",
+      "bit": 6,
+      "privileged": false,
+      "events": [
+        "INVITE_CREATE",
+        "INVITE_DELETE"
+      ]
+    },
+    {
+      "name": "GUILD_VOICE_STATES",
+      "bit": 7,
+      "privileged": false,
+      "events": [
+        "VOICE_CHANNEL_EFFECT_SEND",
+        "VOICE_STATE_UPDATE"
+      ]
+    },
+    {
+      "name": "GUILD_PRESENCES",
+      "bit": 8,
+      "privileged": true,
+      "events": [
+        "PRESENCE_UPDATE"
+      ]
+    },
+    {
+      "name": "GUILD_MESSAGES",
+      "bit": 9,
+      "privileged": false,
+      "events": [
+        "MESSAGE_CREATE",
+        "MESSAGE_UPDATE",
+        "MESSAGE_DELETE",
+        "MESSAGE_DELETE_BULK"
+      ]
+    },
+    {
+      "name": "GUILD_MESSAGE_REACTIONS",
+      "bit": 10,
+      "privileged": false,
+      "events": [
+        "MESSAGE_REACTION_ADD",
+        "MESSAGE_REACTION_REMOVE",
+        "MESSAGE_REACTION_REMOVE_ALL",
+        "MESSAGE_REACTION_REMOVE_EMOJI"
+      ]
+    },
+    {
+      "name": "GUILD_MESSAGE_TYPING",
+      "bit": 11,
+      "privileged": false,
+      "events": [
+        "TYPING_START"
+      ]
+    },
+    {
+      "name": "DIRECT_MESSAGES",
+      "bit": 12,
+      "privileged": false,
+      "events": [
+        "MESSAGE_CREATE",
+        "MESSAGE_UPDATE",
+        "MESSAGE_DELETE",
+        "CHANNEL_PINS_UPDATE"
+      ]
+    },
+    {
+      "name": "DIRECT_MESSAGE_REACTIONS",
+      "bit": 13,
+      "privileged": false,
+      "events": [
+        "MESSAGE_REACTION_ADD",
+        "MESSAGE_REACTION_REMOVE",
+        "MESSAGE_REACTION_REMOVE_ALL",
+        "MESSAGE_REACTION_REMOVE_EMOJI"
+      ]
+    },
+    {
+      "name": "DIRECT_MESSAGE_TYPING",
+      "bit": 14,
+      "privileged": false,
+      "events": [
+        "TYPING_START"
+      ]
+    },
+    {
+      "name": "MESSAGE_CONTENT",
+      "bit": 15,
+      "privileged": true,
+      "events": []
+    },
+    {
+      "name": "GUILD_SCHEDULED_EVENTS",
+      "bit": 16,
+      "privileged": false,
+      "events": [
+        "GUILD_SCHEDULED_EVENT_CREATE",
+        "GUILD_SCHEDULED_EVENT_UPDATE",
+        "GUILD_SCHEDULED_EVENT_DELETE",
+        "GUILD_SCHEDULED_EVENT_USER_ADD",
+        "GUILD_SCHEDULED_EVENT_USER_REMOVE"
+      ]
+    },
+    {
+      "name": "AUTO_MODERATION_CONFIGURATION",
+      "bit": 20,
+      "privileged": false,
+      "events": [
+        "AUTO_MODERATION_RULE_CREATE",
+        "AUTO_MODERATION_RULE_UPDATE",
+        "AUTO_MODERATION_RULE_DELETE"
+      ]
+    },
+    {
+      "name": "AUTO_MODERATION_EXECUTION",
+      "bit": 21,
+      "privileged": false,
+      "events": [
+        "AUTO_MODERATION_ACTION_EXECUTION"
+      ]
+    },
+    {
+      "name": "GUILD_MESSAGE_POLLS",
+      "bit": 24,
+      "privileged": false,
+      "events": [
+        "MESSAGE_POLL_VOTE_ADD",
+        "MESSAGE_POLL_VOTE_REMOVE"
+      ]
+    },
+    {
+      "name": "DIRECT_MESSAGE_POLLS",
+      "bit": 25,
+      "privileged": false,
+      "events": [
+        "MESSAGE_POLL_VOTE_ADD",
+        "MESSAGE_POLL_VOTE_REMOVE"
+      ]
+    }
+  ]
+}

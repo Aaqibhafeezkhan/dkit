@@ -1,0 +1,47 @@
+{
+  "_comment": "Discord snowflake ID layout. Fields are extracted as (id & mask) >> shift.",
+  "source": "https://github.com/discord/discord-api-docs/blob/main/developers/reference.mdx",
+  "source_rendered": "https://discord.com/developers/docs/reference#snowflakes",
+  "last_verified": "2026-10-20",
+  "epoch_ms": 1420070400000,
+  "epoch_description": "Discord Epoch: the first second of 2015 (1420070400000 ms Unix).",
+  "bits": 64,
+  "fields": [
+    {
+      "key": "timestamp_ms",
+      "label": "Timestamp",
+      "mask": "0xFFFFFFFFFFC00000",
+      "shift": 22,
+      "width": 42,
+      "offset_ms": 1420070400000,
+      "description": "Milliseconds since the Discord Epoch."
+    },
+    {
+      "key": "worker_id",
+      "label": "Internal worker ID",
+      "mask": "0x3E0000",
+      "shift": 17,
+      "width": 5,
+      "offset_ms": 0,
+      "description": ""
+    },
+    {
+      "key": "process_id",
+      "label": "Internal process ID",
+      "mask": "0x1F000",
+      "shift": 12,
+      "width": 5,
+      "offset_ms": 0,
+      "description": ""
+    },
+    {
+      "key": "increment",
+      "label": "Increment",
+      "mask": "0xFFF",
+      "shift": 0,
+      "width": 12,
+      "offset_ms": 0,
+      "description": "Incremented for every ID generated on that process."
+    }
+  ]
+}

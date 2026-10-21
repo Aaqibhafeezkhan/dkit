@@ -1,0 +1,35 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+.installed.cfg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Coverage / tooling
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Editors and OS cruft
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db

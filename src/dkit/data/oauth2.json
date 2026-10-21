@@ -1,0 +1,46 @@
+{
+  "_comment": "Discord OAuth2 authorization endpoint and supported scopes.",
+  "source": "https://github.com/discord/discord-api-docs/blob/main/developers/topics/oauth2.mdx",
+  "source_rendered": "https://discord.com/developers/docs/topics/oauth2#shared-resources-oauth2-scopes",
+  "last_verified": "2026-10-20",
+  "authorize_url": "https://discord.com/oauth2/authorize",
+  "default_scopes": [
+    "bot",
+    "applications.commands"
+  ],
+  "notes": [
+    "The 'bot' scope adds the application to a guild; 'permissions' is only meaningful together with it.",
+    "Some scopes require approval from Discord before they can be used."
+  ],
+  "scopes": [
+    "activities.read",
+    "activities.write",
+    "applications.builds.read",
+    "applications.builds.upload",
+    "applications.commands",
+    "applications.commands.permissions.update",
+    "applications.commands.update",
+    "applications.entitlements",
+    "applications.store.update",
+    "bot",
+    "connections",
+    "dm_channels.read",
+    "email",
+    "gdm.join",
+    "guilds",
+    "guilds.join",
+    "guilds.members.read",
+    "identify",
+    "identify.premium",
+    "messages.read",
+    "relationships.read",
+    "role_connections.write",
+    "rpc",
+    "rpc.activities.write",
+    "rpc.notifications.read",
+    "rpc.voice.read",
+    "rpc.voice.write",
+    "voice",
+    "webhook.incoming"
+  ]
+}
