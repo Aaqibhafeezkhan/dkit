@@ -366,7 +366,7 @@ Contributions are very welcome, and the project is deliberately easy to extend:
 git clone https://github.com/Bytewave1/dkit
 cd dkit
 pip install -e ".[dev]"
-python -m pytest        # 169 tests
+python -m pytest
 ruff check . && ruff format --check .
 ```
 
