@@ -319,6 +319,12 @@ and the test suite asserts that the `hex` field in each file agrees with its
 bit. See [CONTRIBUTING.md](CONTRIBUTING.md#updating-the-data-files) for how to
 refresh them.
 
+## Platform support
+
+CI tests Linux on Python 3.10, 3.11, 3.12 and 3.13, plus macOS and Windows
+on Python 3.13. The CLI disables ANSI color codes when output is redirected or
+piped, keeping captured output suitable for scripts across platforms.
+
 ## Contributing
 
 Contributions are very welcome, and the project is deliberately easy to extend:

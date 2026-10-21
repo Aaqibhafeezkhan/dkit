@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Run the test suite on Linux, macOS and Windows, with the full Python-version matrix on Linux.
+- Document the tested platform matrix and cover ANSI-free output when stdout is not a TTY.
+
 ## [0.1.0] - 2026-10-20
 
 ### Added
