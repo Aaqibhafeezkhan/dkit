@@ -13,12 +13,14 @@ from dkit.commands import COMMANDS
 @pytest.mark.parametrize(
     ("argv", "expected"),
     [
-        (("perms", "２０４８"), "2048"),
-        (("perms", "2048\n"), "2048"),
+        (("perms", "\\uff12\\uff10\\uff14\\uff18"), "2048"),
+        (("perms", "2048\\n"), "2048"),
     ],
     ids=["full-width-digits", "trailing-newline"],
 )
-def test_integer_input_accepts_unicode_digits_and_xargs_newline(cli, argv, expected: str) -> None:
+def test_integer_input_accepts_unicode_digits_and_xargs_newline(
+    cli, argv, expected: str
+) -> None:
     result = cli("--json", *argv)
     assert result.exit_code == 0
     assert result.json["value"] == expected
@@ -29,7 +31,7 @@ def test_name_list_accepts_non_breaking_space_after_separator(cli) -> None:
         "--json",
         "perms",
         "--names",
-        "SEND_MESSAGES,\u00a0MANAGE_ROLES",
+        "SEND_MESSAGES,\\u00a0MANAGE_ROLES",
     )
     assert result.exit_code == 0
     assert result.json["names"] == ["SEND_MESSAGES", "MANAGE_ROLES"]
@@ -100,7 +102,9 @@ def test_name_list_accepts_non_breaking_space_after_separator(cli) -> None:
     ],
     ids=["snowflake", "perms", "intents", "invite", "timestamp"],
 )
-def test_json_payload_schema_is_stable(cli, argv: tuple[str, ...], keys: set[str]) -> None:
+def test_json_payload_schema_is_stable(
+    cli, argv: tuple[str, ...], keys: set[str]
+) -> None:
     result = cli("--json", *argv)
     assert result.exit_code == 0
     payload = json.loads(result.stdout)
