@@ -41,7 +41,9 @@ usage example.
 
 ---
 
-## 2. `dkit timestamp` — Discord message timestamp formatting
+## 2. `dkit timestamp` — Discord message timestamp formatting (done in #10)
+
+**Status:** Done by @dbdefault in #10.
 
 **Labels:** `good first issue`, `enhancement`, `new command`
 
@@ -168,7 +170,7 @@ this command must not break that:
 - Import the networking lazily inside `run()`, so no other command can reach
   network code.
 - Document it clearly as a maintainer tool, and consider gating it behind an
-  extra such as `pip install dkit[maintainer]`.
+  extra such as `pip install "dkit-cli[maintainer]"`.
 - Never fetch at runtime for a normal command.
 
 **Done when** `--check` detects a deliberately stale value, `--write` produces
@@ -205,7 +207,9 @@ scripts are non-empty and mention the expected names.
 
 ---
 
-## 7. Verify dkit on Windows, macOS and Linux
+## 7. Verify dkit on Windows, macOS and Linux (done in #9)
+
+**Status:** Done by @Aaqibhafeezkhan in #9.
 
 **Labels:** `good first issue`, `ci`, `help wanted`, `testing`
 

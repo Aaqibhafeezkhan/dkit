@@ -7,15 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-21
+
 ### Added
 
-- `dkit timestamp` - format a timestamp, or a snowflake's creation time, as the
-  documented Discord `<t:...>` tags, with `--style` and `--from-snowflake`.
+- `dkit timestamp` — format a timestamp, or a snowflake's creation time, as the
+  documented Discord `<t:...>` tags, with `--style` and `--from-snowflake`
+  (@dbdefault, #10).
 
 ### Changed
 
-- Run the test suite on Linux, macOS and Windows, with the full Python-version matrix on Linux.
-- Document the tested platform matrix and cover ANSI-free output when stdout is not a TTY.
+- Run the test suite on Linux, macOS and Windows, with the full Python-version
+  matrix on Linux (@Aaqibhafeezkhan, #9).
+- Document the tested platform matrix and cover ANSI-free output when stdout is
+  not a TTY.
+
+### Documentation
+
+- Update `docs/ISSUES.md`: replace old package name `dkit` with `dkit-cli` in
+  install commands, and mark issues #2 and #7 as done.
 
 ## [0.1.0] - 2026-10-20
 
@@ -30,5 +40,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Discord constants in `dkit/data/*.json`, each with a `source` URL and a
   `last_verified` date.
 
-[Unreleased]: https://github.com/Bytewave1/dkit/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/Bytewave1/dkit/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/Bytewave1/dkit/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/Bytewave1/dkit/releases/tag/v0.1.0
