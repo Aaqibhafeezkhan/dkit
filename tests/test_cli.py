@@ -140,6 +140,14 @@ def test_colors_are_disabled_when_not_a_tty(monkeypatch) -> None:
     assert colors_enabled(no_color=False, stream=NotATty()) is False
 
 
+def test_cli_output_has_no_ansi_escapes_when_stdout_is_not_a_tty(cli) -> None:
+    """Captured/piped output must remain free of terminal control sequences."""
+    result = cli("perms", "--names", "SEND_MESSAGES,MANAGE_ROLES")
+    assert result.exit_code == EXIT_OK
+    assert "\033[" not in result.stdout
+    assert "\033[" not in result.stderr
+
+
 def test_style_is_a_no_op_without_color() -> None:
     printer = Printer(color=False)
     assert printer.style("text", "red", "bold") == "text"
