@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   show the valid status transitions with `--transitions`, with `--json` support
   (#71).
 
+### Changed
+
+- Make `dkit errors --search` case-insensitive (#73).
+
 ## [0.3.0] - 2026-10-28
 
 ### Added

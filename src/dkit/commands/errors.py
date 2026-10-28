@@ -12,8 +12,8 @@ from dkit.core.registry import Command
 
 DESCRIPTION = """\
 Look up an HTTP status code or Discord JSON error code, or list every known
-code. Use --search to find matching types, codes, or descriptions with exact,
-case-sensitive text.
+code. Use --search to find matching types, codes, or descriptions with
+case-insensitive text.
 HTTP codes include entries such as 404 and 5xx.
 """
 
@@ -39,7 +39,7 @@ def add_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--search",
         metavar="TEXT",
-        help="list codes whose type, code, or description contains TEXT (case-sensitive)",
+        help="list codes whose type, code, or description contains TEXT (case-insensitive)",
     )
 
 
@@ -94,11 +94,12 @@ def run(args: argparse.Namespace, out: Printer) -> dict[str, Any]:
 
 
 def _search(query: str, entries: list[dict[str, str]]) -> list[dict[str, str]]:
-    """Return entries containing ``query`` with case-sensitive matching."""
+    """Return entries containing ``query`` with case-insensitive matching."""
+    needle = query.casefold()
     return [
         entry
         for entry in entries
-        if any(query in entry[field] for field in ("type", "code", "description"))
+        if any(needle in entry[field].casefold() for field in ("type", "code", "description"))
     ]
 
 
