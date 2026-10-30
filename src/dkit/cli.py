@@ -8,6 +8,9 @@ Exit codes:
 from __future__ import annotations
 
 import argparse
+import contextlib
+import errno
+import os
 import sys
 from collections.abc import Sequence
 
@@ -120,18 +123,63 @@ def main(argv: Sequence[str] | None = None) -> int:
         color=colors_enabled(no_color=no_color, stream=sys.stdout),
     )
 
-    if args.command is None:
-        parser.print_help()
-        return EXIT_OK
-
     try:
-        payload = args._run(args, out)
-    except DkitError as error:
-        out.error(str(error), hint=getattr(error, "hint", None))
-        return error.exit_code
+        if args.command is None:
+            parser.print_help()
+            return _finish(EXIT_OK)
 
-    out.emit_json(payload)
-    return EXIT_OK
+        try:
+            payload = args._run(args, out)
+        except DkitError as error:
+            out.error(str(error), hint=getattr(error, "hint", None))
+            return _finish(error.exit_code)
+
+        out.emit_json(payload)
+        return _finish(EXIT_OK)
+    except BrokenPipeError:
+        # The reader (head, less, grep -m1, ...) closed the pipe. Exit quietly
+        # with the conventional SIGPIPE status instead of printing a traceback.
+        _silence_broken_pipe()
+        return 128 + 13
+
+
+def _finish(code: int) -> int:
+    """Flush stdout here, where a reader that went away can still be handled.
+
+    On Windows the write is buffered and only the flush finds the pipe closed,
+    raising OSError(EINVAL) rather than BrokenPipeError; left to the
+    interpreter's exit flush that would print "Exception ignored" and set the
+    exit status to 120.
+    """
+    try:
+        sys.stdout.flush()
+    except OSError as exc:
+        # Only a closed pipe (EPIPE on POSIX, EINVAL on Windows) is
+        # SIGPIPE; unrelated flush errors like ENOSPC must surface (#51).
+        if isinstance(exc, BrokenPipeError) or (
+            sys.platform == "win32" and exc.errno == errno.EINVAL
+        ):
+            _silence_broken_pipe()
+            return 128 + 13
+        raise
+    return code
+
+
+def _silence_broken_pipe() -> None:
+    """Keep the interpreter from re-raising while flushing to a closed pipe on exit.
+
+    POSIX raises ``BrokenPipeError`` from the flush; Windows raises
+    ``OSError(EINVAL)`` instead, so both are suppressed here.
+    """
+    with contextlib.suppress(OSError):
+        sys.stdout.flush()
+    try:
+        fd = sys.stdout.fileno()
+    except (OSError, ValueError):
+        return
+    devnull = os.open(os.devnull, os.O_WRONLY)
+    os.dup2(devnull, fd)
+    os.close(devnull)
 
 
 if __name__ == "__main__":  # pragma: no cover
